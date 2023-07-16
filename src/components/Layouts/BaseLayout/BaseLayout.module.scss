@@ -1,0 +1,26 @@
+@import 'styles/_colors.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  min-height: 0;
+  height: 100%;
+}
+
+.content {
+  overflow: auto;
+  padding: 3rem;
+  flex-grow: 1;
+
+  @media screen and (max-width: 736px) {
+    padding: 2rem;
+  }
+
+  &__items {
+    margin: 0 auto;
+    max-width: 100rem;
+    min-height: 100%;
+    position: relative;
+  }
+}

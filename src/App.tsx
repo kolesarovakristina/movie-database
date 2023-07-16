@@ -1,58 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { FC, lazy, Suspense } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
-}
+import Home from 'routes/Home';
+
+import MainLayout from 'components/Layouts/MainLayout';
+import Loading from 'components/Loading';
+import ErrorBoundary from 'components/ErrorBoundary';
+
+import 'styles/_base.scss';
+
+const fallback = <Loading />;
+
+const App: FC = () => {
+  const MovieDetail = lazy(() => import('routes/MovieDetail'));
+  const FavoriteMovies = lazy(() => import('routes/FavoriteMovies'));
+
+  const router = createBrowserRouter([
+    {
+      element: <MainLayout />,
+      errorElement: <ErrorBoundary />,
+      children: [
+        {
+          path: '/',
+          element: (
+            <Suspense fallback={fallback}>
+              <Home />
+            </Suspense>
+          ),
+          errorElement: <ErrorBoundary />,
+        },
+        {
+          path: 'movie-detail',
+          element: (
+            <Suspense fallback={fallback}>
+              <MovieDetail />
+            </Suspense>
+          ),
+          errorElement: <ErrorBoundary />,
+        },
+        {
+          path: 'favorite-movies',
+          element: (
+            <Suspense fallback={fallback}>
+              <FavoriteMovies />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+};
 
 export default App;

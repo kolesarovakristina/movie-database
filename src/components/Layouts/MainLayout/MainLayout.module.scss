@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    box-shadow: 0px 0.5px 2px 0px rgba(10, 17, 40, 0.12);
+    padding: 0 3rem;
+
+    @media screen and (max-width: 736px) {
+      padding: 0 1rem;
+    }
+  }
+}

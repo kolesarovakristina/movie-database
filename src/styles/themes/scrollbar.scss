@@ -1,0 +1,18 @@
+@import 'styles/_colors.scss';
+
+.scrollbar-thin {
+  // firefox
+  scrollbar-width: thin;
+
+  // webkit
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: $light-grey;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: $grey;
+  }
+}
