@@ -1,0 +1,15 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  margin: 0 auto;
+
+  @media screen and (max-width: 736px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__item {
+    width: 30rem;
+  }
+}

@@ -1,7 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
 
-export const store = configureStore({
-  reducer: {},
+const store = configureStore({
+  reducer: rootReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -12,3 +13,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export default store;
