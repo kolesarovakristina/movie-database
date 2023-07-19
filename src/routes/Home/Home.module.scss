@@ -1,6 +1,8 @@
+@import 'styles/themes/color.scss';
+
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding-top: 2rem;
   margin: 0 auto;
@@ -11,5 +13,30 @@
 
   &__item {
     width: 30rem;
+
+    @media screen and (max-width: 736px) {
+      max-width: calc(100vw - 2rem);
+    }
   }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  height: 100%;
+  font-size: 2rem;
+  color: $grey;
+  text-align: center;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  font-size: 2rem;
+  color: $grey;
+  text-align: center;
 }

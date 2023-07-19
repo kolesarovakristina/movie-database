@@ -1,0 +1,19 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 0 auto;
+
+  @media screen and (max-width: 736px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  &__card {
+    width: 30rem;
+
+    @media screen and (max-width: 736px) {
+      max-width: calc(100vw - 2rem);
+    }
+  }
+}

@@ -1,17 +1,18 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Card } from 'antd';
-import Meta from 'antd/es/card/Meta';
+import { FrownOutlined, SmileOutlined } from '@ant-design/icons';
 
 import { searchedMoviesSelector } from 'redux/selectors/searchedMoviesSelector';
 import { useSearchedMoviesMutation } from 'hooks/useSearchedMoviesMutation';
 import { errorMessageSelector } from 'redux/selectors/errorMessageSelector';
 
 import BaseLayout from 'components/Layouts/BaseLayout';
+import CustomImage from 'components/CustomImage';
+import Loading from 'components/Loading';
 
 import classes from './Home.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { EPathsEnum } from 'enums/PathsEnum';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -19,18 +20,28 @@ const Home: FC = () => {
   const errorMessage = useSelector(errorMessageSelector);
   const { isLoading } = useSearchedMoviesMutation();
 
-  if (errorMessage !== null) {
-    return <div>{errorMessage}</div>;
+  if (isLoading) {
+    return <Loading />;
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (errorMessage !== null) {
+    return (
+      <BaseLayout>
+        <div className={classes['no-data']}>
+          <FrownOutlined style={{ fontSize: '3rem' }} />
+          {errorMessage}
+        </div>
+      </BaseLayout>
+    );
   }
 
   return (
     <BaseLayout>
       {searchedMovies?.length <= 0 ? (
-        <div>Movies will show up here...</div>
+        <div className={classes.empty}>
+          <SmileOutlined style={{ fontSize: '3rem' }} />
+          Your searched movies will show up here...
+        </div>
       ) : (
         <div className={classes.cards}>
           {searchedMovies?.map(({ Poster, Title, Year, imdbID }) => (
@@ -38,10 +49,10 @@ const Home: FC = () => {
               key={imdbID}
               hoverable
               className={classes.cards__item}
-              cover={<img alt={Title} src={Poster} />}
-              onClick={() => navigate(`${EPathsEnum.MOVIE_DETAILS}${imdbID}`)}
+              cover={<CustomImage alt={Title} src={Poster} height="35rem" />}
+              onClick={() => navigate(`/movie-details/${imdbID}`)}
             >
-              <Meta title={Title} description={Year} />
+              <Card.Meta title={Title} description={Year} />
             </Card>
           ))}
         </div>

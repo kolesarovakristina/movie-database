@@ -1,7 +1,33 @@
+@import 'styles/themes/color.scss';
+
 .wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
   align-items: center;
   height: 12rem;
   max-width: 128rem;
   margin: 0 auto;
+  gap: 2rem;
+
+  @media screen and (max-width: 736px) {
+    gap: 1rem;
+  }
+
+  &__button {
+    font-size: 1.4rem;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  &__logo {
+    text-align: center;
+    color: $medium-red;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    @media screen and (max-width: 736px) {
+      font-size: 1rem;
+    }
+  }
 }

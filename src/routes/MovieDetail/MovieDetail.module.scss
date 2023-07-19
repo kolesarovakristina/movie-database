@@ -1,0 +1,8 @@
+@import 'styles/themes/param.scss';
+
+.holder {
+  box-shadow: $card-box-shadow;
+  width: 100rem;
+  border-radius: 4px;
+  min-height: 30rem;
+}

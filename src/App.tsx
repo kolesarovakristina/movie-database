@@ -8,6 +8,7 @@ import Loading from 'components/Loading';
 import ErrorBoundary from 'components/ErrorBoundary';
 
 import 'styles/_base.scss';
+import { EPathsEnum } from 'enums/PathsEnum';
 
 const fallback = <Loading />;
 
@@ -21,7 +22,7 @@ const App: FC = () => {
       errorElement: <ErrorBoundary />,
       children: [
         {
-          path: '/',
+          path: EPathsEnum.HOME,
           element: (
             <Suspense fallback={fallback}>
               <Home />
@@ -30,7 +31,7 @@ const App: FC = () => {
           errorElement: <ErrorBoundary />,
         },
         {
-          path: 'movie-detail',
+          path: EPathsEnum.MOVIE_DETAILS,
           element: (
             <Suspense fallback={fallback}>
               <MovieDetail />
@@ -39,7 +40,7 @@ const App: FC = () => {
           errorElement: <ErrorBoundary />,
         },
         {
-          path: 'favorite-movies',
+          path: EPathsEnum.FAVORITE_MOVIES,
           element: (
             <Suspense fallback={fallback}>
               <FavoriteMovies />

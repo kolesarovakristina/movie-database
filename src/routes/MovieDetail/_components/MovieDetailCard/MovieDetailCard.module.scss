@@ -1,0 +1,65 @@
+@import 'styles/themes/color.scss';
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  font-size: 1.4rem;
+
+  @media screen and (max-width: 736px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  &__title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__rating-number {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  gap: 2rem;
+
+  @media screen and (max-width: 736px) {
+    padding: 1rem;
+  }
+
+  &__year {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__badges {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__plot {
+    font-size: 1.4rem;
+    line-height: 20px;
+  }
+}

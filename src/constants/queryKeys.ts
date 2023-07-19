@@ -1,3 +1,3 @@
 export const QueryKeys = {
-  SEARCHED_MOVIES: (movieTitle?: string) => ['searchedMovies', movieTitle],
+  MOVIE_DETAILS: (movieId?: string) => ['movieDetails', movieId],
 } as const;

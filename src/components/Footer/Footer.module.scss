@@ -1,16 +1,13 @@
-@import 'styles/_colors.scss';
+@import 'styles/themes/color.scss';
 
 .footer {
   height: 6rem;
-  font-size: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   color: $white;
   background-color: $grey;
   padding: 0 1rem;
-
-  @media screen and (max-width: 736px) {
-    font-size: 1.4rem;
-  }
+  font-size: 1.2rem;
+  text-align: center;
 }

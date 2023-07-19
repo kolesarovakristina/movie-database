@@ -15,8 +15,21 @@ const getSearchedMovies = async (movieTitle: string) => {
   }
 };
 
+const getMovieDetails = async (movieId: string) => {
+  try {
+    const data = await axios.get(`${URL}&i=${movieId}`).then(({ data }) => {
+      return data;
+    });
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const ApiService = {
   getSearchedMovies,
+  getMovieDetails,
 };
 
 export default ApiService;

@@ -1,11 +1,4 @@
 .wrapper {
-  @media screen and (max-width: 736px) {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-
-  &__image {
-    margin-bottom: 1rem;
-  }
+  width: 100%;
+  padding: 2rem;
 }
