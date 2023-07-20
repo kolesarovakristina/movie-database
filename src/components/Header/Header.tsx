@@ -1,6 +1,6 @@
 import { FC, useRef, MutableRefObject } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Form, Input, Space } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 
@@ -29,12 +29,16 @@ type TInputInstance = {
 const Header: FC = () => {
   const movieTitle = useRef<TInputInstance | null>(null);
   const [form] = Form.useForm();
+  const location = useLocation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mutate } = useSearchedMoviesMutation();
 
   const isDesktopResolution = useMediaQuery('(min-width: 736px)');
+  const isFavoriteMoviesPath = location.pathname.includes(
+    EPathsEnum.FAVORITE_MOVIES
+  );
 
   const getSearchedMovies = () => {
     if (EPathsEnum.MOVIE_DETAILS || EPathsEnum.FAVORITE_MOVIES) {
@@ -86,19 +90,23 @@ const Header: FC = () => {
         </Form.Item>
       </Form>
 
-      {isDesktopResolution ? (
-        <Button
-          type="link"
-          className={classes.wrapper__button}
-          onClick={() => navigate(EPathsEnum.FAVORITE_MOVIES)}
-        >
-          Favorite Movies
-        </Button>
-      ) : (
-        <HeartFilled
-          onClick={() => navigate(EPathsEnum.FAVORITE_MOVIES)}
-          style={{ fontSize: '3rem', color: COLORS.RED }}
-        />
+      {!isFavoriteMoviesPath && (
+        <>
+          {isDesktopResolution ? (
+            <Button
+              type="link"
+              className={classes.wrapper__button}
+              onClick={() => navigate(EPathsEnum.FAVORITE_MOVIES)}
+            >
+              Favorite Movies
+            </Button>
+          ) : (
+            <HeartFilled
+              onClick={() => navigate(EPathsEnum.FAVORITE_MOVIES)}
+              style={{ fontSize: '3rem', color: COLORS.RED }}
+            />
+          )}
+        </>
       )}
     </div>
   );
