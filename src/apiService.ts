@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TData } from 'types/MovieDataType';
 
 const API_KEY = process.env.REACT_APP_API_KEY || '';
-const URL = `http://omdbapi.com/?apikey=${API_KEY}`;
+const URL = `https://omdbapi.com/?apikey=${API_KEY}`;
 
 const getSearchedMovies = async (params: {
   movieTitle: string;
