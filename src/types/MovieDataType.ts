@@ -1,3 +1,5 @@
+import { EErrorMessageEnum } from 'enums/ErrorMessageEnum';
+
 interface Rating {
   Source: string;
   Value: string;
@@ -28,4 +30,10 @@ export type TMovieDataType = {
   readonly imdbID: string;
   readonly imdbRating: string;
   readonly imdbVotes: string;
+};
+
+export type TData = {
+  Response: EErrorMessageEnum;
+  Search: Array<TMovieDataType>;
+  totalResults: string;
 };

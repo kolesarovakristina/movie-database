@@ -1,13 +1,20 @@
 import axios from 'axios';
 
-const API_KEY = 'a2862a93';
+import { TData } from 'types/MovieDataType';
+
+const API_KEY = process.env.REACT_APP_API_KEY || '';
 const URL = `http://omdbapi.com/?apikey=${API_KEY}`;
 
-const getSearchedMovies = async (movieTitle: string) => {
+const getSearchedMovies = async (params: {
+  movieTitle: string;
+  page: number;
+}): Promise<TData | undefined> => {
   try {
-    const data = await axios.get(`${URL}&s=${movieTitle}`).then(({ data }) => {
-      return data;
-    });
+    const data = await axios
+      .get(`${URL}&s=${params.movieTitle}&page=${params.page}`)
+      .then(({ data }) => {
+        return data;
+      });
 
     return data;
   } catch (error) {

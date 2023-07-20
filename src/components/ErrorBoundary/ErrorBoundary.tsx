@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { useRouteError, Link } from 'react-router-dom';
 import { Result } from 'antd';
 
-import classes from './ErrorBoundary.module.scss';
+import { EPathsEnum } from 'enums/PathsEnum';
+import { EApiActionsEnum } from 'enums/ApiActionsEnum';
+import { EErrorMessageEnum } from 'enums/ErrorMessageEnum';
 
-enum EErrorBoundaryMessages {
-  NOT_EXIST = 'Sorry the page you are looking for does not exist.',
-}
+import classes from './ErrorBoundary.module.scss';
 
 const ErrorBoundary: FC = () => {
   const error: any = useRouteError();
@@ -15,17 +15,17 @@ const ErrorBoundary: FC = () => {
 
   if (
     error.status === 404 &&
-    error.data.startsWith('Error: No route matches URL')
+    error.data.startsWith(EApiActionsEnum.WRONG_ROUTE)
   ) {
     return (
       <div className={classes.holder}>
         <div>
           <Result
             status="404"
-            title={EErrorBoundaryMessages.NOT_EXIST}
+            title={EErrorMessageEnum.NOT_EXIST}
             extra={
               <div className={classes.wrapper}>
-                <Link to="/" replace>
+                <Link to={EPathsEnum.HOME} replace>
                   Home
                 </Link>
               </div>

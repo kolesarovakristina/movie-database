@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  padding-top: 2rem;
+  padding: 2rem 0;
   margin: 0 auto;
 
   @media screen and (max-width: 736px) {
@@ -15,7 +15,8 @@
     width: 30rem;
 
     @media screen and (max-width: 736px) {
-      max-width: calc(100vw - 2rem);
+      max-width: calc(100vw - 3rem);
+      width: 100%;
     }
   }
 }
@@ -43,4 +44,9 @@
 
 .results {
   font-size: 1.6rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
 }

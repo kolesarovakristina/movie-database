@@ -1,6 +1,8 @@
 import { FC, lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { EPathsEnum } from 'enums/PathsEnum';
+
 import Home from 'routes/Home';
 
 import MainLayout from 'components/Layouts/MainLayout';
@@ -8,7 +10,6 @@ import Loading from 'components/Loading';
 import ErrorBoundary from 'components/ErrorBoundary';
 
 import 'styles/_base.scss';
-import { EPathsEnum } from 'enums/PathsEnum';
 
 const fallback = <Loading />;
 

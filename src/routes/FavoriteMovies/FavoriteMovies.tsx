@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UseQueryResult, useQueries } from '@tanstack/react-query';
 import { Card, Tooltip } from 'antd';
-import { DeleteFilled, ProfileFilled } from '@ant-design/icons';
+import { StarFilled, ProfileFilled } from '@ant-design/icons';
 
 import ApiService from 'apiService';
+
 import { QueryKeys } from 'constants/queryKeys';
+import { COLORS } from 'constants/colors';
 import { TMovieDataType } from 'types/MovieDataType';
+import { ETooltipEnum } from 'enums/TooltipEnum';
 
 import { favoriteMoviesIdsSelector } from 'redux/selectors/favoriteMoviesIdsSelector';
 import { removeFromFavorites } from 'redux/reducers/favoriteMoviesIdsSlice';
@@ -23,6 +26,7 @@ type TMovieQueryResult = UseQueryResult<TMovieDataType, unknown>;
 const FavoriteMovies: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const favoriteMoviesIds = useSelector(favoriteMoviesIdsSelector);
 
   const favoriteMoviesQuery = useQueries({
@@ -54,14 +58,16 @@ const FavoriteMovies: FC = () => {
                   />
                 }
                 actions={[
-                  <Tooltip title="Remove from favorites">
-                    <DeleteFilled
-                      onClick={() =>
-                        dispatch(removeFromFavorites(data?.imdbID))
-                      }
+                  <Tooltip title={ETooltipEnum.REMOVE_FAVORITES_TOOLTIP}>
+                    <StarFilled
+                      onClick={event => {
+                        event.stopPropagation();
+                        dispatch(removeFromFavorites(data?.imdbID));
+                      }}
+                      style={{ fontSize: '2rem', color: COLORS.YELLOW }}
                     />
                   </Tooltip>,
-                  <Tooltip title="View details">
+                  <Tooltip title={ETooltipEnum.VIEW_DETAILS_TOOLTIP}>
                     <ProfileFilled
                       onClick={() => navigate(`/movie-details/${data?.imdbID}`)}
                     />

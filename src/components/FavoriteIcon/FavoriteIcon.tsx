@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { Tooltip, notification } from 'antd';
 import { StarOutlined, StarFilled } from '@ant-design/icons';
+
 import { COLORS } from 'constants/colors';
+import { ENotificationEnum } from 'enums/NotificationEnum';
+import { ETooltipEnum } from 'enums/TooltipEnum';
 
 type TFavoriteIconProps = {
   isMovieAddedToFavorite: boolean;
@@ -9,10 +12,7 @@ type TFavoriteIconProps = {
   removeFromFavorites: () => void;
 };
 
-enum EIconMessageEnum {
-  ADD_MESSAGE = 'Movie was succesfully added to favorites',
-  REMOVE_MESSAGE = 'Movie was succesfully removed from favorites',
-}
+const starIconStyles = { fontSize: '4rem', color: COLORS.YELLOW };
 
 const FavoriteIcon: FC<TFavoriteIconProps> = ({
   isMovieAddedToFavorite,
@@ -25,9 +25,9 @@ const FavoriteIcon: FC<TFavoriteIconProps> = ({
     removeFromFavorites();
 
     api.open({
-      message: EIconMessageEnum.REMOVE_MESSAGE,
+      message: ENotificationEnum.REMOVE_MESSAGE,
       duration: 2,
-      type: 'warning',
+      type: ENotificationEnum.TYPE_WARNING,
     });
   };
 
@@ -35,9 +35,9 @@ const FavoriteIcon: FC<TFavoriteIconProps> = ({
     addToFavorites();
 
     api.open({
-      message: EIconMessageEnum.ADD_MESSAGE,
+      message: ENotificationEnum.ADD_MESSAGE,
       duration: 2,
-      type: 'success',
+      type: ENotificationEnum.TYPE_SUCCESS,
     });
   };
 
@@ -46,16 +46,16 @@ const FavoriteIcon: FC<TFavoriteIconProps> = ({
       {contextHolder}
 
       {isMovieAddedToFavorite ? (
-        <Tooltip title="Remove from favorites">
+        <Tooltip title={ETooltipEnum.REMOVE_FAVORITES_TOOLTIP}>
           <StarFilled
-            style={{ fontSize: '4rem', color: COLORS.YELLOW }}
+            style={starIconStyles}
             onClick={handleRemoveFromFavoritesClick}
           />
         </Tooltip>
       ) : (
-        <Tooltip title="Add to favorites">
+        <Tooltip title={ETooltipEnum.ADD_FAVORITES_TOOLTIP}>
           <StarOutlined
-            style={{ fontSize: '4rem', color: COLORS.YELLOW }}
+            style={starIconStyles}
             onClick={handleAddToFavoritesClick}
           />
         </Tooltip>

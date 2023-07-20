@@ -13,7 +13,8 @@
     width: 30rem;
 
     @media screen and (max-width: 736px) {
-      max-width: calc(100vw - 2rem);
+      max-width: calc(100vw - 3rem);
+      width: 100%;
     }
   }
 }

@@ -6,19 +6,14 @@ import { HeartFilled } from '@ant-design/icons';
 
 import { COLORS } from 'constants/colors';
 import { EPathsEnum } from 'enums/PathsEnum';
-
-import { useSearchedMoviesMutation } from 'hooks/useSearchedMoviesMutation';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 
-import { setSearchedMovies } from 'redux/reducers/searchedMoviesSlice';
-import { setErrorMessage } from 'redux/reducers/errorMessageSlice';
+import {
+  setPagination,
+  setResultsAndTerm,
+} from 'redux/reducers/currentSearchedResultsSlice';
 
 import classes from './Header.module.scss';
-
-enum EErrorMessageEnum {
-  ERROR = 'False',
-  NOT_FOUND_MESSAGE = "Oops! We can't seem to find the movie you're looking for.",
-}
 
 type TInputInstance = {
   input: {
@@ -33,7 +28,6 @@ const Header: FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { mutate } = useSearchedMoviesMutation();
 
   const isDesktopResolution = useMediaQuery('(min-width: 736px)');
   const isFavoriteMoviesPath = location.pathname.includes(
@@ -45,16 +39,13 @@ const Header: FC = () => {
       navigate(EPathsEnum.HOME);
     }
 
-    mutate(movieTitle.current?.input.value as string, {
-      onSuccess: data => {
-        if (data.Response === EErrorMessageEnum.ERROR) {
-          dispatch(setErrorMessage(EErrorMessageEnum.NOT_FOUND_MESSAGE));
-        } else {
-          dispatch(setErrorMessage(null));
-          dispatch(setSearchedMovies(data?.Search));
-        }
-      },
-    });
+    dispatch(
+      setResultsAndTerm({
+        searchedTerm: movieTitle.current!.input.value,
+      })
+    );
+
+    dispatch(setPagination(1));
 
     form.resetFields();
   };

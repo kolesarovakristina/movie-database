@@ -19,6 +19,7 @@ import classes from './MovieDetail.module.scss';
 const MovieDetail: FC = () => {
   const params = useParams();
   const dispatch = useDispatch();
+
   const { isLoading, data } = useMovieDetailsQuery(params.movieId!);
   const favoriteMoviesIds = useSelector(favoriteMoviesIdsSelector);
 
