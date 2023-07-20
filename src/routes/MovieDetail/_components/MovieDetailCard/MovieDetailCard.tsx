@@ -41,7 +41,7 @@ const MovieDetailCard: FC<TMovieDetailCardProps> = ({
 
   return (
     <div className={classes.wrapper}>
-      <CustomImage alt={title} src={poster} />
+      <CustomImage alt={title} src={poster} height="40rem" />
       <div className={classes.items}>
         <div className={classes.header}>
           <div className={classes.header__title}>{title}</div>
