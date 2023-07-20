@@ -1,6 +1,10 @@
 <h1 align="center" id="title">Movie Database</h1>
 
-<p id="description">Simple Movie Database application allows users to search movies, view movie details and select movie as favorite.</p>
+<p id="description">Simple Movie Database application allows users to search movies view movie details and select movie as favorite.</p>
+
+<h2>🚀 Demo</h2>
+
+[https://master--incredible-custard-57f263.netlify.app/](https://master--incredible-custard-57f263.netlify.app/)
 
 <h2>🧐 Features</h2>
 
