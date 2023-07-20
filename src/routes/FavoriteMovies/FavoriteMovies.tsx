@@ -40,46 +40,54 @@ const FavoriteMovies: FC = () => {
 
   return (
     <BaseLayout>
-      <div className={classes.wrapper}>
-        {favoriteMoviesQuery?.map(({ data, isLoading }, index) => (
-          <Fragment key={data?.imdbID ?? index}>
-            {isLoading ? (
-              <LoadingSkeleton />
-            ) : (
-              <Card
-                onClick={() => navigate(`/movie-details/${data?.imdbID}`)}
-                hoverable
-                className={classes.wrapper__card}
-                cover={
-                  <CustomImage
-                    alt={data?.Title}
-                    src={data?.Poster}
-                    height="35rem"
-                  />
-                }
-                actions={[
-                  <Tooltip title={ETooltipEnum.REMOVE_FAVORITES_TOOLTIP}>
-                    <StarFilled
-                      onClick={event => {
-                        event.stopPropagation();
-                        dispatch(removeFromFavorites(data?.imdbID));
-                      }}
-                      style={{ fontSize: '2rem', color: COLORS.YELLOW }}
+      {favoriteMoviesIds.length === 0 ? (
+        <div className={classes['no-data']}>
+          You haven't added any favorite movie yet.
+        </div>
+      ) : (
+        <div className={classes.wrapper}>
+          {favoriteMoviesQuery?.map(({ data, isLoading }, index) => (
+            <Fragment key={data?.imdbID ?? index}>
+              {isLoading ? (
+                <LoadingSkeleton />
+              ) : (
+                <Card
+                  onClick={() => navigate(`/movie-details/${data?.imdbID}`)}
+                  hoverable
+                  className={classes.wrapper__card}
+                  cover={
+                    <CustomImage
+                      alt={data?.Title}
+                      src={data?.Poster}
+                      height="35rem"
                     />
-                  </Tooltip>,
-                  <Tooltip title={ETooltipEnum.VIEW_DETAILS_TOOLTIP}>
-                    <ProfileFilled
-                      onClick={() => navigate(`/movie-details/${data?.imdbID}`)}
-                    />
-                  </Tooltip>,
-                ]}
-              >
-                <Card.Meta title={data?.Title} description={data?.Year} />
-              </Card>
-            )}
-          </Fragment>
-        ))}
-      </div>
+                  }
+                  actions={[
+                    <Tooltip title={ETooltipEnum.REMOVE_FAVORITES_TOOLTIP}>
+                      <StarFilled
+                        onClick={event => {
+                          event.stopPropagation();
+                          dispatch(removeFromFavorites(data?.imdbID));
+                        }}
+                        style={{ fontSize: '2rem', color: COLORS.YELLOW }}
+                      />
+                    </Tooltip>,
+                    <Tooltip title={ETooltipEnum.VIEW_DETAILS_TOOLTIP}>
+                      <ProfileFilled
+                        onClick={() =>
+                          navigate(`/movie-details/${data?.imdbID}`)
+                        }
+                      />
+                    </Tooltip>,
+                  ]}
+                >
+                  <Card.Meta title={data?.Title} description={data?.Year} />
+                </Card>
+              )}
+            </Fragment>
+          ))}
+        </div>
+      )}
     </BaseLayout>
   );
 };
