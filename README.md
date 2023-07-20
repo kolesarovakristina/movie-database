@@ -17,15 +17,13 @@ Here're some of the project's best features:
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. Please provide own API_KEY in .env file</p>
-
-<p>2. Install</p>
+<p>1. Install</p>
 
 ```
 npm i
 ```
 
-<p>3. Run</p>
+<p>2. Run</p>
 
 ```
 npm start
