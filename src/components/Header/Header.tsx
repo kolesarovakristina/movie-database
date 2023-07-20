@@ -1,7 +1,7 @@
 import { FC, useRef, MutableRefObject } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from 'antd';
+import { Button, Form, Input, Space } from 'antd';
 import { HeartFilled } from '@ant-design/icons';
 
 import { COLORS } from 'constants/colors';
@@ -28,9 +28,12 @@ type TInputInstance = {
 
 const Header: FC = () => {
   const movieTitle = useRef<TInputInstance | null>(null);
+  const [form] = Form.useForm();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mutate } = useSearchedMoviesMutation();
+
   const isDesktopResolution = useMediaQuery('(min-width: 736px)');
 
   const getSearchedMovies = () => {
@@ -48,6 +51,8 @@ const Header: FC = () => {
         }
       },
     });
+
+    form.resetFields();
   };
 
   return (
@@ -59,14 +64,27 @@ const Header: FC = () => {
         MOVIE DATABASE
       </div>
 
-      <Input.Search
-        placeholder="Search movie"
-        allowClear
-        enterButton="Search"
-        size="middle"
-        onSearch={getSearchedMovies}
-        ref={movieTitle as MutableRefObject<null>}
-      />
+      <Form
+        className={classes.form}
+        form={form}
+        initialValues={{ remember: true }}
+        onFinish={getSearchedMovies}
+      >
+        <Form.Item
+          name="movieName"
+          rules={[{ required: true, message: 'Please enter movie name!' }]}
+        >
+          <Space.Compact className={classes.form__fields}>
+            <Input
+              placeholder="Search movie"
+              ref={movieTitle as MutableRefObject<null>}
+            />
+            <Button type="primary" htmlType="submit">
+              Search
+            </Button>
+          </Space.Compact>
+        </Form.Item>
+      </Form>
 
       {isDesktopResolution ? (
         <Button

@@ -43,18 +43,23 @@ const Home: FC = () => {
           Your searched movies will show up here...
         </div>
       ) : (
-        <div className={classes.cards}>
-          {searchedMovies?.map(({ Poster, Title, Year, imdbID }) => (
-            <Card
-              key={imdbID}
-              hoverable
-              className={classes.cards__item}
-              cover={<CustomImage alt={Title} src={Poster} height="35rem" />}
-              onClick={() => navigate(`/movie-details/${imdbID}`)}
-            >
-              <Card.Meta title={Title} description={Year} />
-            </Card>
-          ))}
+        <div>
+          <div className={classes.results}>
+            Results for <b>'batman'</b>
+          </div>
+          <div className={classes.cards}>
+            {searchedMovies?.map(({ Poster, Title, Year, imdbID }) => (
+              <Card
+                key={imdbID}
+                hoverable
+                className={classes.cards__item}
+                cover={<CustomImage alt={Title} src={Poster} height="35rem" />}
+                onClick={() => navigate(`/movie-details/${imdbID}`)}
+              >
+                <Card.Meta title={Title} description={Year} />
+              </Card>
+            ))}
+          </div>
         </div>
       )}
     </BaseLayout>
