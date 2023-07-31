@@ -17,13 +17,19 @@ Here're some of the project's best features:
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. Install</p>
+<p>1. Provide your own API KEY</p>
+
+```
+Visit: https://www.omdbapi.com/apikey.aspx
+```
+
+<p>2. Install</p>
 
 ```
 npm i
 ```
 
-<p>2. Run</p>
+<p>3. Run</p>
 
 ```
 npm start
