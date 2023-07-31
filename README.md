@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-[https://64c7cd7e2551bb0008343931--rococo-narwhal-7c07ff.netlify.app/](https://64c7cd7e2551bb0008343931--rococo-narwhal-7c07ff.netlify.app/)
+[https://64c7dd7cc01f0a1d7901118c--rad-treacle-0d8b0d.netlify.app/](https://64c7dd7cc01f0a1d7901118c--rad-treacle-0d8b0d.netlify.app/)
 
 <h2>🧐 Features</h2>
 
