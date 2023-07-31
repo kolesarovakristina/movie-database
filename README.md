@@ -17,7 +17,7 @@ Here're some of the project's best features:
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. Provide your own API KEY</p>
+<p>1. Provide your own API KEY and insert it to the .env file</p>
 
 ```
 Visit: https://www.omdbapi.com/apikey.aspx
